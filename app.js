@@ -9,7 +9,11 @@ const db = new sqlite.Database("./wallet.db", sqlite.OPEN_READWRITE, (err) => {
 });
 
 app.use(bodyParser.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 app.post("/quote", (req, res) => {
   try {
     console.log(req.body);
