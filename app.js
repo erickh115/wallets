@@ -3,12 +3,13 @@ const express = require("express");
 const res = require("express/lib/response");
 const app = express();
 const sqlite = require("sqlite3").verbose();
+const cors = require("cors");
 const db = new sqlite.Database("./wallet.db", sqlite.OPEN_READWRITE, (err) => {
   if (err) return console.error("db error === >", err);
 });
 
 app.use(bodyParser.json());
-
+app.use(cors());
 app.post("/quote", (req, res) => {
   try {
     console.log(req.body);
